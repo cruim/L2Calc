@@ -11,5 +11,6 @@ namespace L2Calc.Models.Repository
         public DbSet<Armor> Armors { get; set; } 
         public DbSet<Weapon> Weapons { get; set; }
         public DbSet<CountOfEnchant> Counts { get; set; } 
+        public DbSet<Category> Categories { get; set; } 
     }
 }

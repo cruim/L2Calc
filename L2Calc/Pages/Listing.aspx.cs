@@ -178,7 +178,7 @@ namespace L2Calc.Pages
                 }
                 int basePDeff = armor.BasePDeff;
                 int finalPDeff = basePDeff + w;
-                Literal1.Text = armor.Name + " +" + countOfEnchant + "Физическая защита " + finalPDeff + "<br/>";
+                Literal1.Text = armor.Name + " +" + countOfEnchant + " Физическая защита " + finalPDeff + "<br/>";
             }
         }
     }

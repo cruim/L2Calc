@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Styles.css" />
+    <Content Include="Controls\CategoryList.ascx" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -123,12 +124,22 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controls\CategoryList.ascx.cs">
+      <DependentUpon>CategoryList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\CategoryList.ascx.designer.cs">
+      <DependentUpon>CategoryList.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Armor.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CountOfEnchant.cs" />
     <Compile Include="Models\Repository\ArmorRepository.cs" />
+    <Compile Include="Models\Repository\CategoryRepository.cs" />
     <Compile Include="Models\Repository\CountRepository.cs" />
     <Compile Include="Models\Repository\EFDbContext.cs" />
     <Compile Include="Models\Repository\WeaponRepository.cs" />
@@ -150,7 +161,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Start\" />
     <Folder Include="Pages\Admin\" />
     <Folder Include="Pages\Helpers\" />
   </ItemGroup>

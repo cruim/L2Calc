@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Listing.aspx.cs" Inherits="L2Calc.Pages.Listing" 
     MasterPageFile="~/Pages/Store.Master"%>
-<%@ Import Namespace="L2Calc.Models" %>
+<%@ Import Namespace="System.Web.Routing" %>
 
 <asp:Content ContentPlaceHolderID="bodyContent" runat="server">
     <div id="content">
