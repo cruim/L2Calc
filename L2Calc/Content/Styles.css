@@ -9,6 +9,7 @@ div#header {
     background-color: #444; 
     border-bottom: 2px solid #111; 
     color: white;
+
 }
 div#header div.title { 
     font-size: 2em; 
@@ -16,8 +17,9 @@ div#header div.title {
 }
 div#content { 
     border-left: 2px solid gray; 
-    margin-left: 9em; 
-    padding: 1em; 
+    margin-left: 10.4em; 
+    padding: 1em;
+    height: 98px;
 }
 div#categories { 
     float: left; 
@@ -69,3 +71,19 @@ div#categories a
 div#categories a.selected { background-color: #666; color: White; }
 div#categories a:hover { background-color: #CCC; }
 div#categories a.selected:hover { background-color: #666; }
+
+div#button{
+	background-color:#aacdd7;
+	border:	thin #69e5e8 solid;
+	padding: 50px;
+	margin: 10px;
+	text-align: center;
+	border-radius: 25px;
+}
+
+div#dropdownlist1 {
+    position: absolute;
+    left: 660px;
+    top: 200px;
+    width: 36px;
+}

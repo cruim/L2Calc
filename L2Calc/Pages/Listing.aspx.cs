@@ -39,7 +39,7 @@ namespace L2Calc.Pages
 
         }
 
-
+        
 
         protected void RadioButtonOfWeapon_CheckedChanged(object sender, EventArgs e)
         {
@@ -78,108 +78,138 @@ namespace L2Calc.Pages
                 DropDownListOfArmor.DataValueField = "Id";
                 DropDownListOfArmor.DataBind();
 
+                //DropDownListOfCount.DataSource = GetCount();
+                //DropDownListOfCount.DataTextField = "Count";
+                //DropDownListOfCount.DataValueField = "Id";
+                //DropDownListOfCount.DataBind();
                 foreach (CountOfEnchant count in GetCount())
                 {
                     DropDownListOfCount.Items.Add(count.Count.ToString());
                 }
-                DropDownListOfCount.DataTextField = "Count";
-                DropDownListOfCount.DataValueField = "Id";
+                //DropDownListOfCount.DataTextField = "Count";
+                //DropDownListOfCount.DataValueField = "Id";
                 //DropDownListOfCount.DataBind();
 
                 //add a select text at the first position
-                DropDownListOfWeapon.Items.Insert(0, new ListItem("Select a weapon", "-1", true));
-                DropDownListOfArmor.Items.Insert(0, new ListItem("Select a armor", "-1", true));
-                DropDownListOfCount.Items.Insert(0, new ListItem("Select a count", "-1", true));
+                DropDownListOfWeapon.Items.Insert(0, new ListItem("Выберите Оружие", "-1", true));
+                DropDownListOfArmor.Items.Insert(0, new ListItem("Выберите Доспех", "-1", true));
+                DropDownListOfCount.Items.Insert(0, new ListItem("Уровень модификации", "-1", true));
+
             }
         }
+
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            if (RadioButtonOfWeapon.Checked)
+
+
+            if (RadioButtonOfWeapon.Checked && DropDownListOfWeapon.SelectedItem.Text != "Выберите Оружие")
             {
                 EnchantFunctionOfWeapon(ref x, ref z);
+                x = 0;
+                z = 0;
             }
-            if (RadioButtonOfArmor.Checked)
+            if (RadioButtonOfArmor.Checked && DropDownListOfArmor.SelectedItem.Text != "Выберите Доспех")
             {
                 EnchantFunctionOfArmor(ref w);
+                w = 0;
             }
-            
-        }
 
+
+        }
+        
 
 
         public void EnchantFunctionOfWeapon(ref int g, ref int k)
         {
-            int Id = Convert.ToInt32(DropDownListOfWeapon.SelectedValue);
+            string name = DropDownListOfWeapon.SelectedItem.Text;
 
-            List<Weapon> weaponList = GetWeapons().Where(x => x.Id == Id).ToList();
+            List<Weapon> weaponList = GetWeapons().Where(x => x.Name == name).ToList();
 
             Weapon weapon = weaponList[0];
+            int basePAttack = weapon.BasePAttack;
+            int baseMAttack = weapon.BaseMAttack;
+            var countOfEnchant = Convert.ToInt32(DropDownListOfCount.SelectedItem.Text);
+            //уровень модификации, выбранный в DropDownListOfCount
 
-            var countOfEnchant = Convert.ToInt32(DropDownListOfCount.SelectedItem.Value); //уровень модификации, выбранный в DropDownListOfCount
-
-            var oneClickEnchantPAttack = (int)Math.Ceiling(weapon.SortOfWeapon * weapon.BlessOrSimple); //базовая прибавка патаки
+            var oneClickEnchantPAttack = (int)Math.Ceiling(weapon.SortOfWeapon * weapon.BlessOrSimple);
+            //базовая прибавка патаки
 
             int oneClickEnchantMAttack = (int)Math.Ceiling(5 * weapon.BlessOrSimple); //базовая прибавка матаки
 
             int countOfIteration = 1; //счетчик, позволяющий прервать цикл при countOfIteration > countOfEnchant
 
-
-
-            for (int i = 1; i <= countOfEnchant; i++) //i - увеличивает коэффициент каждого четвертого шага на 1
+            if (countOfEnchant == 0)
+            {
+                Literal1.Text = weapon.Name + " +" + countOfEnchant + " Физическая атака " + basePAttack +
+                                        " Магическая Атака " + baseMAttack + "<br />";
+            }
+            else
+            {
+                for (int i = 1; i <= countOfEnchant; i++) //i - увеличивает коэффициент каждого четвертого шага на 1
             {
                 for (int j = 0; j < 3; j++)
                 {
                     if (countOfIteration > countOfEnchant)
                     {
+                        var finalPAttack = basePAttack + g;
+                        var finalMAttack = baseMAttack + k;
+                        Literal1.Text = weapon.Name + " +" + countOfEnchant + " Физическая атака " + finalPAttack +
+                                        " Магическая Атака " + finalMAttack + "<br />";
                         return;
                     }
 
-                    g = g + oneClickEnchantPAttack * i;
-                    k = k + oneClickEnchantMAttack * i;
+                    g = g + oneClickEnchantPAttack*i;
+                    k = k + oneClickEnchantMAttack*i;
                     countOfIteration++;
 
+                    }
                 }
-                int basePAttack = weapon.BasePAttack;
-                int baseMAttack = weapon.BaseMAttack;
-                int finalPAttack = basePAttack + g; //базовое значение физ.атаки + изменения от модификации
-                int finalMAttack = baseMAttack + k;
-                Literal1.Text = weapon.Name + " +" + countOfEnchant + " Физическая атака " + finalPAttack + " Магическая Атака " + finalMAttack + "<br />";
             }
+
         }
 
         public void EnchantFunctionOfArmor(ref int g)
         {
-            int Id = Convert.ToInt32(DropDownListOfArmor.SelectedValue);
+            string name = DropDownListOfArmor.SelectedItem.Text;
 
-            List<Armor> armorList = GetArmors().Where(x => x.Id == Id).ToList();
+            List<Armor> armorList = GetArmors().Where(x => x.Name == name).ToList();
 
             Armor armor = armorList[0];
 
-            int countOfEnchant = Convert.ToInt32(DropDownListOfCount.SelectedValue); //уровень модификации
+            var countOfEnchant = Convert.ToInt32(DropDownListOfCount.SelectedValue); //уровень модификации
 
             var oneClickEnchantPDeff = (int)Math.Ceiling(2 * armor.BlessOrSimple); //базовая прибавка защиты
 
             int countOfIteration = 1; //счетчик, позволяющий прервать цикл при countOfIteration > countOfEnchant
 
+            var basePDeff = armor.BasePDeff;
 
-
-            for (int i = 1; i <= countOfEnchant; i++) //i - увеличивает коэффициент каждого четвертого шага на 1
+            if (countOfEnchant == 0)
+            {
+                Literal1.Text = armor.Name + " +" + countOfEnchant + " Физическая защита " + basePDeff + "<br/>";
+            }
+            else
+            {
+                for (int i = 1; i <= countOfEnchant; i++) //i - увеличивает коэффициент каждого четвертого шага на 1
             {
                 for (int j = 0; j < 3; j++)
                 {
                     if (countOfIteration > countOfEnchant)
                     {
+                        var finalPDeff = basePDeff + g;
+                        Literal1.Text = armor.Name + " +" + countOfEnchant + " Физическая защита " + finalPDeff + "<br/>";
                         return;
                     }
                     if (i > 3) { i = 3; }
                     g = g + oneClickEnchantPDeff * i;
                     countOfIteration++;
                 }
-                int basePDeff = armor.BasePDeff;
-                int finalPDeff = basePDeff + w;
-                Literal1.Text = armor.Name + " +" + countOfEnchant + " Физическая защита " + finalPDeff + "<br/>";
+
+
+                }
             }
+
         }
     }
 }

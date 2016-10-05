@@ -3,6 +3,4 @@
 
 <%= CreateHomeLinkHtml() %>
 
-<% foreach (var category in GetCategories()) {
-       Response.Write(CreateLinkHtml(category.Name));       
-}%>
+<%= CreateFaqLinkHtml() %>
