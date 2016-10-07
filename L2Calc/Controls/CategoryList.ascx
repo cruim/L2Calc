@@ -2,5 +2,5 @@
 <%@ Import Namespace="L2Calc.Models" %>
 
 <%= CreateHomeLinkHtml() %>
-
+<%= CreateDS80LinkHtml() %>
 <%= CreateFaqLinkHtml() %>

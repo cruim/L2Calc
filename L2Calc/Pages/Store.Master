@@ -14,13 +14,19 @@
             <div id="header">
                 <div class="title">L2Calc - Калькулятор для Lineage2</div>
             </div>
-            <div id="categories">
+            <div id="categories" >
                 <GS:CategoryLinks runat="server" />
             </div>
             <div>
                 <asp:ContentPlaceHolder ID="bodyContent" runat="server" />
-            </div>
+
+
         </div>
+        </div>
+      <div id="picture">
+           <asp:Image  ID="Image1" runat="server" Height="252px" ImageUrl="~/Content/Jak2N_croper_ru.jpeg" /> 
+            </div>  
+        
     </form>
 </body>
 </html>

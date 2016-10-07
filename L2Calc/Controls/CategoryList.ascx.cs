@@ -13,27 +13,30 @@ namespace L2Calc.Controls
 {
     public partial class CategoryList : System.Web.UI.UserControl
     {
-        private CategoryRepository categoryRepository = new CategoryRepository();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected IEnumerable<Category> GetCategories()
-        {
-            return new CategoryRepository().Categories;
-        }
+       
 
         protected string CreateHomeLinkHtml()
         {
             string path = RouteTable.Routes.GetVirtualPath(null,null).VirtualPath;
-            return string.Format("<a href='{0}'>Главная</a>", path);
+            return string.Format("<a href='{0}'>R - R99</a>", path);
         }
 
         protected string CreateFaqLinkHtml()
         {
             string path = RouteTable.Routes.GetVirtualPath(null, "faq", null).VirtualPath;
             return string.Format("<a href='{0}'>FAQ</a>", path);
+        }
+
+        protected string CreateDS80LinkHtml()
+        {
+            string path = RouteTable.Routes.GetVirtualPath(null, "D-S80", null).VirtualPath;
+            return string.Format("<a href='{0}'>D - S80</a>", path);
         }
 
 

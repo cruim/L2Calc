@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
 namespace L2Calc.Models.Repository
 {
-    public class CategoryRepository
+    public class LowWeaponRepository
     {
         private EFDbContext context = new EFDbContext();
 
-        public IEnumerable<Category> Categories
+        public IEnumerable<LowWeapon> LowWeapons
         {
-            get { return context.Categories; }
+            get { return context.LowWeapons; }
         }
     }
 }

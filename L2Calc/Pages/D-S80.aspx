@@ -1,11 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Listing.aspx.cs" Inherits="L2Calc.Pages.Listing"
-    MasterPageFile="~/Pages/Store.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="D-S80.aspx.cs" Inherits="L2Calc.Pages.D_S80" 
+
+MasterPageFile="~/Pages/Store.Master" %>
 
 <asp:Content ContentPlaceHolderID="bodyContent" runat="server">
     <div id="content">
 
 
-        <h1 >R - R99</h1>
+        <h1 >D - S80</h1>
 
 
 

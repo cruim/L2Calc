@@ -10,7 +10,7 @@
 namespace L2Calc.Pages {
     
     
-    public partial class Listing {
+    public partial class D_S80 {
         
         /// <summary>
         /// DropDownListOfWeapon control.

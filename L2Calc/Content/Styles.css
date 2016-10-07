@@ -1,6 +1,9 @@
 ﻿body { 
     font-family: Cambria, Georgia, "Times New Roman"; 
     margin: 0;
+    
+
+
 }
 div#header div.title, div.item h3, div.item h4, div.pager a {
     font: bold 1em "Arial Narrow", "Franklin Gothic Medium", Arial;
@@ -15,16 +18,23 @@ div#header div.title {
     font-size: 2em; 
     padding: .6em;
 }
-div#content { 
+div#content {
+    overflow: auto;
     border-left: 2px solid gray; 
     margin-left: 10.4em; 
     padding: 1em;
-    height: 98px;
+    height: 250px;
+    text-align: center;
+
+
+
 }
 div#categories { 
     float: left; 
     width: 8em; 
-    padding: .3em; 
+    padding: .3em;
+
+     
 }
 
 div.item { 
@@ -73,12 +83,13 @@ div#categories a:hover { background-color: #CCC; }
 div#categories a.selected:hover { background-color: #666; }
 
 div#button{
-	background-color:#aacdd7;
+    text-align: center;
+	background-color:white;
 	border:	thin #69e5e8 solid;
 	padding: 50px;
 	margin: 10px;
-	text-align: center;
 	border-radius: 25px;
+    width: 800px;
 }
 
 div#dropdownlist1 {
@@ -87,3 +98,14 @@ div#dropdownlist1 {
     top: 200px;
     width: 36px;
 }
+
+
+#picture {
+    position: fixed; /* Фиксированное положение */
+    padding-bottom: 252px;
+    left: 0; bottom: 0; /* Левый нижний угол */
+    padding: 10px; /* Поля вокруг текста */
+    background: white; /* Цвет фона */
+    text-align: center; 
+    width: 100%; /* Ширина слоя */
+   }

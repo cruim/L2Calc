@@ -13,8 +13,10 @@ namespace L2Calc
             routes.MapPageRoute(null, "list/{page}", "~/Pages/Listing.aspx");
             routes.MapPageRoute(null, "", "~/Pages/Listing.aspx");
             routes.MapPageRoute(null, "list", "~/Pages/Listing.aspx");
-
+            routes.MapPageRoute("D-S80", "D-S80", "~/Pages/D-S80.aspx");
             routes.MapPageRoute("faq", "faq", "~/Pages/FAQ.aspx");
+
+            
         }
     }
 }
