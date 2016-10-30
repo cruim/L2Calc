@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using L2Calc.Models;
+using L2Calc.Models.Entities;
 using L2Calc.Models.Repository;
 
 namespace L2Calc.Pages
@@ -15,6 +16,7 @@ namespace L2Calc.Pages
         private ArmorRepository armorRepository = new ArmorRepository();
         private WeaponRepository weaponRepository = new WeaponRepository();
         private CountRepository countRepository = new CountRepository();
+        private ShadowWeaponRepository shadowWeaponRepository = new ShadowWeaponRepository();
 
         private static int x;
         private static int z;
@@ -39,7 +41,12 @@ namespace L2Calc.Pages
 
         }
 
-        
+        protected IEnumerable<ShadowWeapon> GetShadowWeapons()
+        {
+            return shadowWeaponRepository.ShadowWeapons;
+        }
+
+
 
         protected void RadioButtonOfWeapon_CheckedChanged(object sender, EventArgs e)
         {
@@ -117,7 +124,7 @@ namespace L2Calc.Pages
 
 
         }
-        
+
 
 
         public void EnchantFunctionOfWeapon(ref int g, ref int k)
@@ -129,7 +136,7 @@ namespace L2Calc.Pages
             Weapon weapon = weaponList[0];
             int basePAttack = weapon.BasePAttack;
             int baseMAttack = weapon.BaseMAttack;
-            var countOfEnchant = Convert.ToInt32(DropDownListOfCount.SelectedItem.Text);
+            var countOfEnchant = Convert.ToInt32(DropDownListOfCount.SelectedValue);
             //уровень модификации, выбранный в DropDownListOfCount
 
             var oneClickEnchantPAttack = (int)Math.Ceiling(weapon.SortOfWeapon * weapon.BlessOrSimple);
@@ -147,21 +154,21 @@ namespace L2Calc.Pages
             else
             {
                 for (int i = 1; i <= countOfEnchant; i++) //i - увеличивает коэффициент каждого четвертого шага на 1
-            {
-                for (int j = 0; j < 3; j++)
                 {
-                    if (countOfIteration > countOfEnchant)
+                    for (int j = 0; j < 3; j++)
                     {
-                        var finalPAttack = basePAttack + g;
-                        var finalMAttack = baseMAttack + k;
-                        Literal1.Text = weapon.Name + " +" + countOfEnchant + " Физическая атака " + finalPAttack +
-                                        " Магическая Атака " + finalMAttack + "<br />";
-                        return;
-                    }
+                        if (countOfIteration > countOfEnchant)
+                        {
+                            var finalPAttack = basePAttack + g;
+                            var finalMAttack = baseMAttack + k;
+                            Literal1.Text = weapon.Name + " +" + countOfEnchant + " Физическая атака " + finalPAttack +
+                                            " Магическая Атака " + finalMAttack + "<br />";
+                            return;
+                        }
 
-                    g = g + oneClickEnchantPAttack*i;
-                    k = k + oneClickEnchantMAttack*i;
-                    countOfIteration++;
+                        g = g + oneClickEnchantPAttack * i;
+                        k = k + oneClickEnchantMAttack * i;
+                        countOfIteration++;
 
                     }
                 }
@@ -192,19 +199,19 @@ namespace L2Calc.Pages
             else
             {
                 for (int i = 1; i <= countOfEnchant; i++) //i - увеличивает коэффициент каждого четвертого шага на 1
-            {
-                for (int j = 0; j < 3; j++)
                 {
-                    if (countOfIteration > countOfEnchant)
+                    for (int j = 0; j < 3; j++)
                     {
-                        var finalPDeff = basePDeff + g;
-                        Literal1.Text = armor.Name + " +" + countOfEnchant + " Физическая защита " + finalPDeff + "<br/>";
-                        return;
+                        if (countOfIteration > countOfEnchant)
+                        {
+                            var finalPDeff = basePDeff + g;
+                            Literal1.Text = armor.Name + " +" + countOfEnchant + " Физическая защита " + finalPDeff + "<br/>";
+                            return;
+                        }  
+                        if (i > 3) { i = 3; }
+                        g = g + oneClickEnchantPDeff * i;
+                        countOfIteration++;
                     }
-                    if (i > 3) { i = 3; }
-                    g = g + oneClickEnchantPDeff * i;
-                    countOfIteration++;
-                }
 
 
                 }

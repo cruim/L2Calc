@@ -13,6 +13,7 @@ namespace L2Calc.Models.Repository
         public DbSet<Weapon> Weapons { get; set; }
         public DbSet<CountOfEnchant> Counts { get; set; }
         public DbSet<LowWeapon> LowWeapons { get; set; } 
-        public DbSet<LowArmor>  LowArmors { get; set; }
+        public DbSet<LowArmor> LowArmors { get; set; }
+        public DbSet<ShadowWeapon> ShadowWeapons { get; set; }  
     }
 }

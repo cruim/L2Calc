@@ -113,7 +113,6 @@
     <Content Include="Pages\D-S80.aspx" />
     <Content Include="Pages\FAQ.aspx" />
     <Content Include="Pages\Store.Master" />
-    <None Include="Properties\PublishProfiles\36.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -146,11 +145,13 @@
     <Compile Include="Models\Entities\CountOfEnchant.cs" />
     <Compile Include="Models\Entities\LowArmor.cs" />
     <Compile Include="Models\Entities\LowWeapon.cs" />
+    <Compile Include="Models\Entities\ShadowWeapon.cs" />
     <Compile Include="Models\Repository\ArmorRepository.cs" />
     <Compile Include="Models\Repository\CountRepository.cs" />
     <Compile Include="Models\Repository\EFDbContext.cs" />
     <Compile Include="Models\Repository\LowArmorRepository.cs" />
     <Compile Include="Models\Repository\LowWeaponRepository.cs" />
+    <Compile Include="Models\Repository\ShadowWeaponRepository.cs" />
     <Compile Include="Models\Repository\WeaponRepository.cs" />
     <Compile Include="Models\Entities\Weapon.cs" />
     <Compile Include="Pages\D-S80.aspx.cs">
